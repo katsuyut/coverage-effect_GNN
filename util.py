@@ -26,5 +26,5 @@ def get_plot(model,data_list,case='noname',save='no'):
     plt.figure()
     plt.plot(y,ypred,'.')
     plt.plot(pp,pp)
-    plt.savefig(case+'.png')
+    plt.savefig('./figs/'+case+'.png')
     plt.show()
