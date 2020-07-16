@@ -1,10 +1,21 @@
+import numpy as np
+import os.path as osp
 import torch
 import torch.nn.functional as F
+from torch_geometric.data import Data, DataLoader
 from torch_geometric.nn import CGConv
+from random import shuffle, randint
+import networkx as nx
+import matplotlib.pyplot as plt
+import random
+from sklearn.preprocessing import StandardScaler
+import argparse
+import pickle
+from statistics import stdev
 
 class simpleNet(torch.nn.Module):
     def __init__(self, in_ch, nconv):
-        super(Net, self).__init__()
+        super(simpleNet, self).__init__()
         self.conv1 = CGConv(in_ch)
         self.conv2 = CGConv(in_ch)
         self.lin = torch.nn.Linear(in_ch, 1)
@@ -27,7 +38,7 @@ class simpleNet(torch.nn.Module):
 
 class comp1Net(torch.nn.Module):
     def __init__(self, in_ch_sl, in_ch_ad, nconv):
-        super(Net, self).__init__()
+        super(comp1Net, self).__init__()
         self.conv1_sl = CGConv(in_ch_sl)
         self.conv2_sl = CGConv(in_ch_sl)
         self.conv1_ad = CGConv(in_ch_ad)
@@ -59,7 +70,7 @@ class comp1Net(torch.nn.Module):
 
 class comp2Net(torch.nn.Module):
     def __init__(self, in_ch_sl, in_ch_ad, nconv):
-        super(Net, self).__init__()
+        super(comp2Net, self).__init__()
         self.conv1_sl = CGConv(in_ch_sl)
         self.conv2_sl = CGConv(in_ch_sl)
         self.conv1_ad = CGConv(in_ch_ad)

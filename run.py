@@ -9,7 +9,6 @@ nepoch=500
 lr = 0.001
 i=0
 
-
 for data in datas:
     for ytype in ytypes:
         for mo in mos:
