@@ -193,7 +193,8 @@ for epoch in range(nepoch):
         loss.backward()
         optimizer.step()
     loss_list.append(get_loss(model.eval(),train_list))
-    print('epoch %d RMSE :%f' % (epoch, loss_list[-1]**0.5))
+    if (epoch+1)%5==0:
+        print('epoch %d RMSE :%f' % (epoch+1, loss_list[-1]**0.5))
     
 torch.save(model.state_dict(), './models/'+case+'.pth')
 
