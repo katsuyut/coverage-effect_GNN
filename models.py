@@ -29,8 +29,8 @@ class simpleNet(torch.nn.Module):
         elif self.nconv==2:
             x = self.conv1(x, edge_index)
             x = self.conv2(x, edge_index)
-        x = x * surf_filter.reshape(-1,1)
         x = self.lin(x)
+        x = x * surf_filter.reshape(-1,1)
         y = torch.sum(x) / torch.sum(surf_filter)
         
         return y
@@ -93,8 +93,8 @@ class comp2Net(torch.nn.Module):
 
         x_sl = self.lin_sl(x_sl)
         x = x_sl * x_ad
-        x = x * surf_filter.reshape(-1,1)
         x = self.lin(x)
+        x = x * surf_filter.reshape(-1,1)
         y = torch.sum(x) / torch.sum(surf_filter)
         
         return y
