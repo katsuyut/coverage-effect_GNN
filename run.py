@@ -9,12 +9,11 @@ nepoch=500
 lr = 0.001
 i=0
 
-
 for data in datas:
     for ytype in ytypes:
         for mo in mos:
             for nconv in nconvs:
-                message = 'python coverage_GNN.py --case="n%02d" --nepoch=%d --ytype="%s" --mo="%s" --nconv=%d --data="%s" --lr=%f --save="%s"' %(i,nepoch,ytype,mo,nconv,data,lr,'yes')
+                message = 'python coverage_GNN.py --case="n%03d" --nepoch=%d --ytype="%s" --mo="%s" --nconv=%d --data="%s" --lr=%f --save="%s"' %(i,nepoch,ytype,mo,nconv,data,lr,'yes')
                 print(message)
                 os.system(message)
                 i+=1

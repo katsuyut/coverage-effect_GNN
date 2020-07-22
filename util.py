@@ -1,3 +1,18 @@
+import numpy as np
+import os.path as osp
+import torch
+import torch.nn.functional as F
+from torch_geometric.data import Data, DataLoader
+from torch_geometric.nn import CGConv
+from random import shuffle, randint
+import networkx as nx
+import matplotlib.pyplot as plt
+import random
+from sklearn.preprocessing import StandardScaler
+import argparse
+import pickle
+from statistics import stdev
+
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 def get_loss(model,data_list):
@@ -24,5 +39,5 @@ def get_plot(model,data_list,case='noname',save='no'):
     plt.figure()
     plt.plot(y,ypred,'.')
     plt.plot(pp,pp)
-    plt.savefig(case+'.png')
+    plt.savefig('./figs/'+case+'.png')
     plt.show()
