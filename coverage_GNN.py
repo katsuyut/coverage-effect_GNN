@@ -66,16 +66,16 @@ save = args.save
 
 import pickle
 
-with open('data.pickle', 'rb') as lb:
-    rdata = pickle.load(lb)
-    edge_indexes,features,surf_filters,ys_slab,ys_space,ys_all = rdata
+# with open('data.pickle', 'rb') as lb:
+#     rdata = pickle.load(lb)
+#     edge_indexes,features,surf_filters,ys_slab,ys_space,ys_all = rdata
     
-allinone = []
-for feature in features:
-    for each in feature:
-        allinone.append(each)
-allinone = np.array(allinone)
-scaler = StandardScaler().fit(allinone[:,:8])
+# allinone = []
+# for feature in features:
+#     for each in feature:
+#         allinone.append(each)
+# allinone = np.array(allinone)
+# scaler = StandardScaler().fit(allinone[:,:8])
 
 
 # In[ ]:
@@ -88,6 +88,14 @@ with open(datatype+'.pickle', 'rb') as lb:
 
 
 # In[ ]:
+
+
+allinone = []
+for feature in features:
+    for each in feature:
+        allinone.append(each)
+allinone = np.array(allinone)
+scaler = StandardScaler().fit(allinone[:,:8])
 
 
 scfeatures = []
@@ -120,7 +128,8 @@ for i in range(len(ys_all)):
     edge_index = torch.tensor(edge_indexes[i], dtype=torch.long)
     x = torch.tensor(features[i], dtype=torch.float)
     surf_filter = torch.tensor(surf_filters[i], dtype=torch.long)
-    y = torch.tensor(ys_slab[i], dtype=torch.float)
+    y = torch.tensor(ys[i], dtype=torch.float)
+#     print(i, edge_index, x, surf_filter, y)
     data = Data(x=x, edge_index=edge_index, surf_filter=surf_filter, y=y)
     data_list.append(data)
 
@@ -206,8 +215,7 @@ plt.figure()
 plt.plot(loss_list)
 plt.yscale('log')
 plt.savefig('./figs/'+case+'_loss.png')
-plt.show()
-
+# plt.show()
 
 # In[ ]:
 

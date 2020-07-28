@@ -40,4 +40,4 @@ def get_plot(model,data_list,case='noname',save='no'):
     plt.plot(y,ypred,'.')
     plt.plot(pp,pp)
     plt.savefig('./figs/'+case+'.png')
-    plt.show()
+#     plt.show()
